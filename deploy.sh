@@ -42,7 +42,7 @@ sudo systemctl restart "$SERVICE"
 
 echo "==> Waiting for health check"
 for attempt in {1..10}; do
-    if curl -fsS "$HEALTH_URL" >/dev/null; then
+    if curl -fsS "$HEALTH_URL" >/dev/null 2>&1; then
         echo "==> Deploy successful"
         echo "Commit: $(git rev-parse --short HEAD)"
         systemctl --no-pager --quiet is-active "$SERVICE"
